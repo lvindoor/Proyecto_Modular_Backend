@@ -36,10 +36,10 @@ public class SecurityConfig {
               .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/exercise-record/challenge-completed/**").permitAll())
               .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/roles/**").permitAll())
 
-              .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api​/exercise-record​/new​/**").permitAll())
+              // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api​/exercise-record​/new​/**").permitAll())
 
               //! Auth example
-              // .authorizeRequests(requests -> requests.antMatchers("/api/**").permitAll())
+              .authorizeRequests(requests -> requests.antMatchers("/api/**").permitAll())
 
 
               //! Descomentar cuando el login
