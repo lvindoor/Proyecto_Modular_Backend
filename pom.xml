@@ -8,14 +8,20 @@
 		<version>2.7.15</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.udg</groupId>
 	<artifactId>mirutina</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MiRutina</name>
+
+	<packaging>war</packaging>
+
 	<description>Mi rutina Backend</description>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 
 		<!-- JPA -->
@@ -93,6 +99,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<finalName>MiRutina</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
