@@ -14,7 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MiRutina</name>
 
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<description>Mi rutina Backend</description>
 
@@ -55,6 +55,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+			<version>42.7.2</version>
 		</dependency>
 
 		<!-- Lombok -->
