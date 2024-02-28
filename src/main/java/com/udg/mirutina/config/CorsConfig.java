@@ -15,7 +15,10 @@ public class CorsConfig {
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    corsConfiguration.setAllowedOrigins(Arrays.asList(
+      "http://localhost:4200",
+      "https://udg.netlify.app",
+      "https://proyectomodularbackend-production.up.railway.app"));
     corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
 
