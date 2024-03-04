@@ -26,8 +26,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "system_user")
-public class User {
+@Table(name = "member")
+public class Member {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,15 +58,15 @@ public class User {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
-      name = "user_role",
-      joinColumns = @JoinColumn(name = "system_user_id"),
+      name = "member_role",
+      joinColumns = @JoinColumn(name = "member_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   // @JsonIgnore // this attribute is ignore in the JSON response
   // @ApiModelProperty(hidden = true) // not visible on swagger
   private List<Role> roles;
 
-  public User() {
+  public Member() {
     this.roles = new ArrayList<>();
   }
 

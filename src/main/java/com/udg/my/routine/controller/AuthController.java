@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.udg.my.routine.config.JwtUtil;
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 import com.udg.my.routine.pojo.LoginDto;
 import com.udg.my.routine.pojo.Response;
 import com.udg.my.routine.pojo.UpdatePassword;
@@ -49,10 +49,10 @@ public class AuthController {
     Map<String, Object> response = new HashMap<>();
     try {
 
-      User dbUser = this.userService.findByUsername(loginDto.getUsername());
+      Member dbUser = this.userService.findByUsername(loginDto.getUsername());
 
       if( dbUser == null ) {
-        String message = User.class.getSimpleName() + " with username: " + loginDto.getUsername() + " not found";
+        String message = Member.class.getSimpleName() + " with username: " + loginDto.getUsername() + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
@@ -80,14 +80,14 @@ public class AuthController {
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
-      User dbUser = this.userService.findByUsername(username);
+      Member dbUser = this.userService.findByUsername(username);
       if(dbUser == null) {
-        String message = User.class.getSimpleName() + " with username: " + username + " not found";
+        String message = Member.class.getSimpleName() + " with username: " + username + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
       if( !(dbUser.getUsername().toLowerCase().equals(username.trim().toLowerCase())) ) {
-        String message = User.class.getSimpleName() + " with username: " + username + " is not de same that: " + dbUser.getUsername() + " and id:" + username;
+        String message = Member.class.getSimpleName() + " with username: " + username + " is not de same that: " + dbUser.getUsername() + " and id:" + username;
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
@@ -100,7 +100,7 @@ public class AuthController {
       String encryptedPassword = passwordEncryptionService.encryptPassword(updatePassword.getNewPassword());
       dbUser.setPassword(encryptedPassword);
 
-      User userUpdated = this.userService.save(dbUser);
+      Member userUpdated = this.userService.save(dbUser);
       return new ResponseEntity<Response>(new Response(true, "password was changed", userUpdated), HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(e.getMessage())), HttpStatus.INTERNAL_SERVER_ERROR);

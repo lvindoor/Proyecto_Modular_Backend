@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 import com.udg.my.routine.repository.UserRepository;
 
 @Service
@@ -18,23 +18,23 @@ public class UserService {
   
   // @Secured("ROLE_ADMIN")
   @Transactional(readOnly = true)
-  public List<User> findAll() {
+  public List<Member> findAll() {
     return this.userRepository.findAll();
   }
 
   @Transactional(readOnly = true)
-  public User findByUsername(String username) {
+  public Member findByUsername(String username) {
     return this.userRepository.findByUsername(username);
   }
 
   @Transactional(readOnly = true)
-  public User findById(Long id) {
+  public Member findById(Long id) {
     return this.userRepository.findById(id);
   }
 
   @Transactional
-  public User save(User user) {
-    return this.userRepository.save(user);
+  public Member save(Member member) {
+    return this.userRepository.save(member);
   }
 
   @Transactional

@@ -5,19 +5,19 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 
-public interface UserRepository extends CrudRepository<User, Serializable> {
+public interface UserRepository extends CrudRepository<Member, Serializable> {
   
-  List<User> findAll();
+  List<Member> findAll();
 
-  User findById(Long id);
+  Member findById(Long id);
 
-  User findByUsername(String username);
+  Member findByUsername(String username);
 
   void deleteById(Long id);
 
   @SuppressWarnings("unchecked")
-  User save(User user);
+  Member save(Member member);
 
 }

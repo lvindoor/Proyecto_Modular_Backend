@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.udg.my.routine.model.Role;
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 import com.udg.my.routine.repository.UserRepository;
 
 @Service
@@ -24,7 +24,7 @@ public class UserSecurityService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User dbUser = this.userRepository.findByUsername(username);
+    Member dbUser = this.userRepository.findByUsername(username);
 
     if( dbUser == null) throw new UsernameNotFoundException("User: "+ username +", was not found");
 

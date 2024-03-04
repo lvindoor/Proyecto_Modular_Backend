@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.udg.my.routine.model.Role;
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 import com.udg.my.routine.pojo.Response;
 import com.udg.my.routine.service.PasswordEncryptionService;
 import com.udg.my.routine.service.ResponseService;
@@ -37,8 +37,8 @@ public class UserController {
   @GetMapping
   public ResponseEntity<Response> getUsers() {
     try {
-      List<User> users = this.userService.findAll();
-      return new ResponseEntity<Response>(new Response(true, "success", users), HttpStatus.OK);
+      List<Member> members = this.userService.findAll();
+      return new ResponseEntity<Response>(new Response(true, "success", members), HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(e.getMessage())), HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -47,10 +47,10 @@ public class UserController {
   @GetMapping("/username/{username}")
   public ResponseEntity<Response> getUserByUsername(@PathVariable String username) {
     try {
-      User dbUser = this.userService.findByUsername( username.trim() );
+      Member dbUser = this.userService.findByUsername( username.trim() );
 
       if( dbUser == null ) {
-        String message = User.class.getSimpleName() + " with username: " + username + " not found";
+        String message = Member.class.getSimpleName() + " with username: " + username + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
@@ -63,9 +63,9 @@ public class UserController {
   @GetMapping("/user/role/{userId}")
   public ResponseEntity<Response> getRolesByUserId(@PathVariable Long userId) {
     try {
-      User dbUser = this.userService.findById(userId);
+      Member dbUser = this.userService.findById(userId);
       if( dbUser == null ) {
-        String message = User.class.getSimpleName() + " with id: " + userId + " not found";
+        String message = Member.class.getSimpleName() + " with id: " + userId + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
@@ -80,10 +80,10 @@ public class UserController {
   @GetMapping("/{id}")
   public ResponseEntity<Response> getUserById(@PathVariable Long id) {
     try {
-      User dbUser = this.userService.findById( id );
+      Member dbUser = this.userService.findById( id );
 
       if(dbUser == null) {
-        String message = User.class.getSimpleName() + " with id: " + id + " not found";
+        String message = Member.class.getSimpleName() + " with id: " + id + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
@@ -94,12 +94,12 @@ public class UserController {
   }
 
   @PostMapping
-  public ResponseEntity<Response> createUser(@RequestBody User user) {
+  public ResponseEntity<Response> createUser(@RequestBody Member member) {
     try {
-      String encryptedPassword = passwordEncryptionService.encryptPassword(user.getPassword());
-      user.setPassword(encryptedPassword);
+      String encryptedPassword = passwordEncryptionService.encryptPassword(member.getPassword());
+      member.setPassword(encryptedPassword);
       
-      User userUpdated = this.userService.save(user);
+      Member userUpdated = this.userService.save(member);
       return new ResponseEntity<Response>(new Response(true, "created", userUpdated), HttpStatus.OK);
     } catch (Exception e) {
       e.printStackTrace();
@@ -108,24 +108,24 @@ public class UserController {
   }
 
   @PutMapping("/{id}")
-    public ResponseEntity<Response> updateUser(@PathVariable Long id ,@RequestBody User user) {
+    public ResponseEntity<Response> updateUser(@PathVariable Long id ,@RequestBody Member member) {
     try {
 
       //Validate if exist user
-      User dbUser = this.userService.findById(id);
+      Member dbUser = this.userService.findById(id);
       if(dbUser == null) {
-        String message = User.class.getSimpleName() + " with id: " + id + " not found";
+        String message = Member.class.getSimpleName() + " with id: " + id + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 
       // Update user
-      dbUser.setUsername(user.getUsername() );
-      dbUser.setEmail( user.getEmail());
-      dbUser.setGoogle( user.getGoogle());
-      dbUser.setIsActive( user.getIsActive());
-      dbUser.setRoles( user.getRoles() );
+      dbUser.setUsername(member.getUsername() );
+      dbUser.setEmail( member.getEmail());
+      dbUser.setGoogle( member.getGoogle());
+      dbUser.setIsActive( member.getIsActive());
+      dbUser.setRoles( member.getRoles() );
 
-      User userUpdated = this.userService.save(dbUser);
+      Member userUpdated = this.userService.save(dbUser);
       return new ResponseEntity<Response>(new Response(true, "updated", userUpdated), HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(e.getMessage())), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -135,10 +135,10 @@ public class UserController {
   @DeleteMapping("/{id}")
   public ResponseEntity<Response> deleteUserById(@PathVariable Long id) {
     try {
-      User dbUser = this.userService.findById( id );
+      Member dbUser = this.userService.findById( id );
       
       if(dbUser == null) {
-        String message = User.class.getSimpleName() + " with id: " + id + " not found";
+        String message = Member.class.getSimpleName() + " with id: " + id + " not found";
         return new ResponseEntity<Response>(new Response(false, "error", this.resService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
       }
 

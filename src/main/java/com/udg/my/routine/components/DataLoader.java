@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.udg.my.routine.model.Role;
-import com.udg.my.routine.model.User;
+import com.udg.my.routine.model.Member;
 import com.udg.my.routine.service.PasswordEncryptionService;
 import com.udg.my.routine.service.RoleService;
 import com.udg.my.routine.service.UserService;
@@ -34,22 +34,22 @@ public class DataLoader implements CommandLineRunner {
     String username = "jalejandro_garcia";
     String encryptedPassword = passwordEncryptionService.encryptPassword("Tormentax55.");
 
-    User dbUser = userService.findByUsername(username);
+    Member dbUser = userService.findByUsername(username);
     if( dbUser != null ) return;
 
     Role dbRole = roleService.findByName("ADMIN");
 
-    User user = new User();
+    Member member = new Member();
     if( dbRole != null ) {
-      user.setRoles(Arrays.asList(dbRole));
+      member.setRoles(Arrays.asList(dbRole));
     }
 
-    user.setUsername(username);
-    user.setPassword(encryptedPassword);
-    user.setEmail("jesus.garcia1953@alumnos.udg.mx");
-    user.setIsActive(true);
-    user.setGoogle(false);
-    userService.save(user);
+    member.setUsername(username);
+    member.setPassword(encryptedPassword);
+    member.setEmail("jesus.garcia1953@alumnos.udg.mx");
+    member.setIsActive(true);
+    member.setGoogle(false);
+    userService.save(member);
   }
 
   private void loadDefaultRole() {
