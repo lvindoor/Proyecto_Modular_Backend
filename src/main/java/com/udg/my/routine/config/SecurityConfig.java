@@ -32,9 +32,9 @@ public class SecurityConfig {
               .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
               //! Public endpoints
-              // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/users").permitAll())
+              // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/user").permitAll())
               // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/exercise-record/challenge-completed/**").permitAll())
-              // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/roles/**").permitAll())
+              // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/api/role/**").permitAll())
 
               // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api​/exercise-record​/new​/**").permitAll())
 
@@ -45,7 +45,7 @@ public class SecurityConfig {
               //! Descomentar cuando el login
               .authorizeRequests(requests -> requests.antMatchers("/**").permitAll())
               .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api/auth/**").permitAll())
-              .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api/users").permitAll())
+              .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api/user").permitAll())
               .authorizeRequests(requests -> requests.antMatchers(
                       "/v3/api-docs/**",
                       "/swagger-ui/**",

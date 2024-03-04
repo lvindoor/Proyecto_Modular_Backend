@@ -26,7 +26,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "system_user")
 public class User {
 
   @Id
@@ -59,7 +59,7 @@ public class User {
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "user_role",
-      joinColumns = @JoinColumn(name = "user_id"),
+      joinColumns = @JoinColumn(name = "system_user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   // @JsonIgnore // this attribute is ignore in the JSON response

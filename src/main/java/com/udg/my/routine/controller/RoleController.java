@@ -20,7 +20,7 @@ import com.udg.my.routine.service.ResponseService;
 import com.udg.my.routine.service.RoleService;
 
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping("/api/role")
 public class RoleController {
 
   @Autowired

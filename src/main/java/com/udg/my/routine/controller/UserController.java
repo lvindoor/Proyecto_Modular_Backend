@@ -22,7 +22,7 @@ import com.udg.my.routine.service.ResponseService;
 import com.udg.my.routine.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
 
   @Autowired
@@ -60,7 +60,7 @@ public class UserController {
     }
   }
 
-  @GetMapping("/user/roles/{userId}")
+  @GetMapping("/user/role/{userId}")
   public ResponseEntity<Response> getRolesByUserId(@PathVariable Long userId) {
     try {
       User dbUser = this.userService.findById(userId);
