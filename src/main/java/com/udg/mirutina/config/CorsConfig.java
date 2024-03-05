@@ -17,10 +17,12 @@ public class CorsConfig {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowedOrigins(Arrays.asList(
       "http://localhost:4200",
+      "http://localhost:8080",
       "https://udg.netlify.app",
       "https://proyectomodularbackend-production.up.railway.app"));
     corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+    corsConfiguration.setExposedHeaders(Arrays.asList("Authorization")); // Exponer el encabezado de autorización
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", corsConfiguration);
