@@ -1,4 +1,4 @@
 [env.production]
 
-RAILWAY_APP_NAME = "MiRutina"
+RAILWAY_APP_NAME = "MyRoutine"
 RAILWAY_ENV = "production"

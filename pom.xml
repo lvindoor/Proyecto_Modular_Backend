@@ -10,13 +10,13 @@
 	</parent>
 
 	<groupId>com.udg</groupId>
-	<artifactId>mirutina</artifactId>
+	<artifactId>myroutine</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MiRutina</name>
+	<name>MyRoutine</name>
 
 	<packaging>jar</packaging>
 
-	<description>Mi rutina Backend</description>
+	<description>My Routine Backend</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -100,7 +100,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>MiRutina</finalName>
+					<finalName>MyRoutine</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
