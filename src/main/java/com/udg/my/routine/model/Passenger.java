@@ -28,7 +28,7 @@ public class Passenger {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(length = 15)
+	@Column(length = 25)
 	private String category;
 	
 	@Column(name = "card_id", unique = true)

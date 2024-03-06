@@ -33,10 +33,8 @@ public class HistoryService {
     }
 	
 	public List<History> findAllWhoCompletedChallengeToday() {
-		
         LocalDate date = LocalDate.now();
         Date today = java.sql.Date.valueOf(date); 
-
         return repository.findByChallengeCompletedAndDate(true, today);
     }
 	

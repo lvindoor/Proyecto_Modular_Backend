@@ -9,6 +9,7 @@ import com.udg.my.routine.model.Member;
 
 public interface UserRepository extends CrudRepository<Member, Serializable> {
   
+  @SuppressWarnings("null")
   List<Member> findAll();
 
   Member findById(Long id);
@@ -17,7 +18,7 @@ public interface UserRepository extends CrudRepository<Member, Serializable> {
 
   void deleteById(Long id);
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "null", "unchecked" })
   Member save(Member member);
 
 }
