@@ -43,7 +43,7 @@ public class SecurityConfig {
 
 
               //! Descomentar cuando el login
-              // .authorizeRequests(requests -> requests.antMatchers("/**").permitAll())
+              .authorizeRequests(requests -> requests.antMatchers("/**").permitAll())
               // .authorizeRequests(requests -> requests.antMatchers(HttpMethod.OPTIONS, "/**").permitAll())
               .authorizeRequests(requests -> requests.antMatchers(HttpMethod.GET, "/").permitAll())
               .authorizeRequests(requests -> requests.antMatchers(HttpMethod.POST, "/api/auth/**").permitAll())

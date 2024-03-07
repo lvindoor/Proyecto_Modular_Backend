@@ -43,7 +43,7 @@ public class TransportController {
 		}
 	}
 	
-	@PostMapping("/new")
+	@PostMapping
 	public ResponseEntity<Response> create(@RequestBody Transport transport) {
 		try {
 			Object response = transportService.save(transport);

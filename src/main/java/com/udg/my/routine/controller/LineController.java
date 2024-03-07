@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.udg.my.routine.model.Line;
-import com.udg.my.routine.model.Transport;
 import com.udg.my.routine.pojo.Response;
 import com.udg.my.routine.service.LineService;
-import com.udg.my.routine.service.TransportService;
-import com.udg.my.routine.service.ResponseService;
 
 @RestController
 @RequestMapping("/api/line")
@@ -27,12 +24,6 @@ public class LineController {
 	
 	@Autowired
 	private LineService lineService;
-
-	@Autowired
-	private TransportService transportService;
-	
-	@Autowired
-	private ResponseService responseService;
 
 	@GetMapping
 	public ResponseEntity<Response> getAll() {
@@ -54,17 +45,17 @@ public class LineController {
 		}
 	}
 	
-	@PostMapping("/new/{TransportId}")
-	public ResponseEntity<Response> create(@PathVariable Long transportId, @RequestBody Line line) {
+	@PostMapping
+	public ResponseEntity<Response> create(@RequestBody Line line) {
 		try {
 
-			Optional<Transport> transport = this.transportService.findById(transportId);
-			if (!transport.isPresent()) {
-				String message = Line.class.getSimpleName() + " with id: " + transportId + " not found";
-				return new ResponseEntity<Response>(new Response(false, "error", this.responseService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+			// Optional<Transport> transport = this.transportService.findById(transportId);
+			// if (!transport.isPresent()) {
+			// 	String message = Line.class.getSimpleName() + " with id: " + transportId + " not found";
+			// 	return new ResponseEntity<Response>(new Response(false, "error", this.responseService.errors(message)), HttpStatus.INTERNAL_SERVER_ERROR);
+			// }
 			
-			line.setTransport(transport.get());
+			// line.setTransport(transport.get());
 
 			Object response = lineService.save(line);
 			return new ResponseEntity<Response>(new Response(true, "Success", response), HttpStatus.OK);
