@@ -19,7 +19,7 @@ public class CorsConfig {
       "http://localhost:4200",
       "http://localhost:8080",
       "https://udg.netlify.app",
-      "https://myroutine.up.railway.app"));
+      "https://my-routine.up.railway.app"));
     corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
     corsConfiguration.setExposedHeaders(Arrays.asList("Authorization")); // Exponer el encabezado de autorización
